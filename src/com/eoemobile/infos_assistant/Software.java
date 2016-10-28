@@ -2,9 +2,11 @@ package com.eoemobile.infos_assistant;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import person.ljd.infos_assistant.R;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.pm.ApplicationInfo;
@@ -12,6 +14,7 @@ import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -47,7 +50,8 @@ public class Software extends Activity implements  Runnable {
 	/*
 	public List fetch_installed_apps(){
         List<ApplicationInfo> packages = getPackageManager().getInstalledApplications(0);
-		list = new ArrayList<Map<String, Object>>(packages.size());
+		list = new ArrayList<Map<String, Object>>(
+				packages.size());
 		Iterator<ApplicationInfo> l = packages.iterator();
 		
 		while (l.hasNext()) {
@@ -60,7 +64,7 @@ public class Software extends Activity implements  Runnable {
             } catch (Exception e) {  
             	Log.i("Exception",e.toString());
             }
-    		//map = new HashMap<String, Object>();
+    		map = new HashMap<String, Object>();
      		map.put("name", label);
     		map.put("desc", packageName);
     		list.add(map);

@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import person.ljd.infos_assistant.R;
 import com.eoemobile.infos_assistant.util.PreferencesUtil;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

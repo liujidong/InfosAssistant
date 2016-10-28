@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import person.ljd.infos_assistant.R;
 import com.eoemobile.infos_assistant.util.PreferencesUtil;
 
  

@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import net.youmi.android.AdManager;
+import net.youmi.android.banner.AdSize;
+import net.youmi.android.banner.AdView;
+import person.ljd.infos_assistant.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class EoeInfosAssistant extends Activity implements OnItemClickListener {
 	private static final String TAG = "eoeInfosAssistant";
@@ -27,8 +32,27 @@ public class EoeInfosAssistant extends Activity implements OnItemClickListener {
 		setContentView(R.layout.main);
 		itemlist = (ListView) findViewById(R.id.itemlist);
 		refreshListItems();
-	}
+		//-------------------广告-------------------------------
+		//分别为应用的发布 ID 和密钥
+		AdManager.getInstance(this).init("e98cb7cf099e4472", "765e6dd0273dc5e5", false);
+		showBanner();
 
+	}
+	private void showBanner() {
+		// 实例化广告条
+		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
+		/*
+		// 获取要嵌入广告条的布局
+		LinearLayout adLayout=(LinearLayout)findViewById(R.id.adLayout);
+		// 将广告条加入到布局中
+		adLayout.addView(adView);	
+		*/
+		FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,
+				FrameLayout.LayoutParams.WRAP_CONTENT);
+		// 设置广告条的悬浮位置
+		layoutParams.gravity = Gravity.BOTTOM; // 这里示例为右下角
+		this.addContentView(adView, layoutParams);
+	}
 	private void refreshListItems() {
 		list = buildListForSimpleAdapter();
 		SimpleAdapter notes = new SimpleAdapter(this, list, R.layout.item_row,

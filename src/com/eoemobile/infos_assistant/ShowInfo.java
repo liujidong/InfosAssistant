@@ -3,7 +3,7 @@ package com.eoemobile.infos_assistant;
  
 import com.eoemobile.infos_assistant.util.FetchData;
 import com.eoemobile.infos_assistant.util.PreferencesUtil;
-
+import person.ljd.infos_assistant.R;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -45,7 +45,7 @@ public class ShowInfo extends Activity implements Runnable {
 		thread.start();
 	}
 
-	// ½ÓÊÕ´«µÝ½øÀ´µÄÐÅÏ¢
+	// ï¿½ï¿½ï¿½Õ´ï¿½ï¿½Ý½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	private void revParams() {
 		Log.i(TAG, "revParams.");
 		Intent startingIntent = getIntent();
