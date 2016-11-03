@@ -221,7 +221,8 @@ public class FetchData {
 	public static String getDisplayMetrics(Context cx) {
 		String str = "";
 		DisplayMetrics dm = new DisplayMetrics();
-		dm = cx.getApplicationContext().getResources().getDisplayMetrics();
+		//dm = cx.getApplicationContext().getResources().getDisplayMetrics();
+		dm = cx.getResources().getDisplayMetrics();
 		int screenWidth = dm.widthPixels;
 		int screenHeight = dm.heightPixels;
 		float density = dm.density;
