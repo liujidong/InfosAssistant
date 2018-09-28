@@ -1,6 +1,8 @@
 package com.eoemobile.infos_assistant;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -30,6 +32,7 @@ public class Software extends Activity implements  Runnable {
 		setContentView(R.layout.infos);
 		setTitle("软件信息");
 		itemlist = (ListView) findViewById(R.id.itemlist);
+		//itemlist.setChoiceMode(ListView.CHOICE_MODE_SINGLE);//设置可选中
         pd = ProgressDialog.show(this, "请稍候..", "正在收集你已经安装的软件信息...", true,
                 false);
         Thread thread = new Thread(this);
@@ -39,6 +42,7 @@ public class Software extends Activity implements  Runnable {
  
 	private void refreshListItems() {
 		list = fetch_installed_apps2();
+		orderList(list);
 		SimpleAdapter notes = new SimpleAdapter(this, list, R.layout.info_row,
 				new String[] { "name", "desc" }, new int[] { R.id.name,
 						R.id.desc });
@@ -71,7 +75,7 @@ public class Software extends Activity implements  Runnable {
 		}
 		return list;
     }*/
-	public List fetch_installed_apps2(){
+	private List fetch_installed_apps2(){
 		List<PackageInfo> packages = getPackageManager().getInstalledPackages(0);
 		list = new ArrayList<Map<String, Object>>(packages.size());		        
 		for(int i=0;i<packages.size();i++) { 
@@ -92,7 +96,17 @@ public class Software extends Activity implements  Runnable {
 		        
 		 }	
 		return list;
-	}	
+	}
+	private void orderList(List<Map<String,Object>> list){
+        Collections.sort(list, new Comparator<Map<String,Object>>(){
+            public int compare(Map<String,Object> m1, Map<String,Object> m2) {
+                //按照Person的年龄进行升序排列
+            	String name1 = (String)m1.get("name");
+            	String name2 = (String)m2.get("name");
+            	return name1.compareToIgnoreCase(name2);
+            }
+        });
+	}
 	@Override
 	public void run() {
     	fetch_installed_apps2();
